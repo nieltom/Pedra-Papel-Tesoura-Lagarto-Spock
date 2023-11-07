@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✊ 🤚 ✌️ 👌 🖖 </title>
+
+    <head>
+        <style>
+            body {
+                text-align: center;
+                background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 13, 121, 1) 30%, rgba(0, 198, 255, 1) 100%);
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+
+            h1 {
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: aliceblue;
+            }
+
+            button {
+                width: 120px;
+                height: 50px;
+                border-radius: 10px;
+                background-color: rgb(57, 105, 201);
+                color: white;
+                border: none;
+                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.4);
+            }
+
+            button:active {
+                transform: translateY(2px);
+                box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            #result {
+                font-size: 54px;
+                color: red;
+            }
+
+            #images {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            img {
+                width: 250px;
+                height: 250px;
+                display: none;
+            }
+
+            #loadingGif {
+                display: none;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 700px;
+                height: 400px;
+            }
+
+            #rulesButton {
+                position: fixed;
+                right: 20px;
+                top: 35px;
+                transform: translateY(-50%);
+            }
+
+            #rulesPanel {
+                display: none;
+                position: fixed;
+                right: 20px;
+                top: 30%;
+                transform: translateY(-50%);
+                background: white;
+                border: 1px solid black;
+                padding: 20px;
+                background: linear-gradient(159deg, rgba(5, 95, 196, 1) 0%, rgba(107, 110, 217, 1) 22%, rgba(132, 192, 209, 1) 100%);
+            }
+        </style>
+    </head>
+
+<body>
+    <h1>Pedra-Papel-Tesoura-Lagarto-Spock </h1>
+    <h2>✊ 🤚 ✌️ 👌 🖖</h2>
+    <br>
+    <button onclick="playGame('pedra')">Pedra</button>
+    <button onclick="playGame('papel')">Papel</button>
+    <button onclick="playGame('tesoura')">Tesoura</button>
+    <button onclick="playGame('lagarto')">Lagarto</button>
+    <button onclick="playGame('spock')">Spock</button>
+
+    <p id="result"></p>
+
+    <div id="images">
+        <img id="playerChoice" src="" alt="Sua escolha">
+        <img id="computerChoice" src="" alt="Escolha do computador">
+    </div>
+
+    <img id="loadingGif" src="PPTLS.gif" alt="✊ 🤚 ✌️ 👌 🖖">
+
+    <button id="rulesButton" onclick="toggleRules()">Mostrar Regras</button>
+    <div id="rulesPanel">
+        <img src="regras.png" alt="Regras do Jogo">
+        <p>As regras de Pedra-papel-tesoura-lagarto-Spock são:</p>
+        <ul>
+            <li>Tesoura corta papel</li>
+            <li>Papel cobre pedra</li>
+            <li>Pedra esmaga lagarto</li>
+            <li>Lagarto envenena Spock</li>
+            <li>Spock esmaga (ou derrete) tesoura</li>
+            <li>Tesoura decapita lagarto</li>
+            <li>Lagarto come papel</li>
+            <li>Papel refuta Spock</li>
+            <li>Spock vaporiza pedra</li>
+            <li>Pedra amassa tesoura</li>
+        </ul>
+    </div>
+
+    <script>
+        function playGame(playerChoice) {
+            document.getElementById('loadingGif').style.display = 'block';
+            setTimeout(function () {
+                var choices = ['pedra', 'papel', 'tesoura', 'lagarto', 'spock'];
+                var computerChoice = choices[Math.floor(Math.random() * 5)];
+
+                document.getElementById('playerChoice').src = playerChoice + '.png';
+                document.getElementById('computerChoice').src = computerChoice + '.png';
+
+                document.getElementById('playerChoice').style.display = 'block';
+                document.getElementById('computerChoice').style.display = 'block';
+
+                if (playerChoice === computerChoice) {
+                    document.getElementById('result').innerText = 'Empate!';
+                } else if (
+                    (playerChoice === 'pedra' && (computerChoice === 'tesoura' || computerChoice === 'lagarto')) ||
+                    (playerChoice === 'papel' && (computerChoice === 'pedra' || computerChoice === 'spock')) ||
+                    (playerChoice === 'tesoura' && (computerChoice === 'papel' || computerChoice === 'lagarto')) ||
+                    (playerChoice === 'lagarto' && (computerChoice === 'papel' || computerChoice === 'spock')) ||
+                    (playerChoice === 'spock' && (computerChoice === 'tesoura' || computerChoice === 'pedra'))
+                ) {
+                    document.getElementById('result').innerText = 'Você ganhou!';
+                } else {
+                    document.getElementById('result').innerText = 'Você perdeu!';
+                }
+
+                document.getElementById('loadingGif').style.display = 'none';
+            }, 2000);
+        }
+
+        function toggleRules() {
+            var rulesPanel = document.getElementById('rulesPanel');
+            if (rulesPanel.style.display === 'none') {
+                rulesPanel.style.display = 'block';
+                document.getElementById('rulesButton').innerText = 'Esconder Regras';
+            } else {
+                rulesPanel.style.display = 'none';
+                document.getElementById('rulesButton').innerText = 'Mostrar Regras';
+            }
+        }
+    </script>
+</body>
+
+</html>
