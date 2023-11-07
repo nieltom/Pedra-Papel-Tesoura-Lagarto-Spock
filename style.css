@@ -1,0 +1,79 @@
+body {
+    text-align: center;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 13, 121, 1) 30%, rgba(0, 198, 255, 1) 100%);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: aliceblue;
+}
+
+button {
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(57, 105, 201);
+    color: white;
+    border: none;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#result {
+    font-size: 54px;
+    color: red;
+}
+
+#images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+    display: none;
+}
+
+#loadingGif {
+    display: none;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 400px;
+}
+
+#rulesButton {
+    position: fixed;
+    right: 20px;
+    top: 35px;
+    transform: translateY(-50%);
+}
+
+#rulesPanel {
+    display: none;
+    position: fixed;
+    right: 20px;
+    top: 30%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid black;
+    padding: 20px;
+    background: linear-gradient(159deg, rgba(5, 95, 196, 1) 0%, rgba(107, 110, 217, 1) 22%, rgba(132, 192, 209, 1) 100%);
+}
